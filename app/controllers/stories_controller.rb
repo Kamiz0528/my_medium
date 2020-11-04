@@ -25,10 +25,15 @@ class StoriesController < ApplicationController
 
   def update
     if @story.update(story_params)
-      redirect_to stories_path, notice: '故事新增成功'
+      redirect_to stories_path, notice: '故事更新成功'
     else
       render :edit
     end
+  end
+
+  def destroy
+    @story.destroy
+    redirect_to stories_path, notice: '故事已刪除'
   end
 
   private
