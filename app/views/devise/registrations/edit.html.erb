@@ -11,7 +11,18 @@
       </div>
       <p class="help">範例:@kamitsuTW</p>
     </div>
-  
+
+    <div class="field">
+      <%= f.label :avatar, '大頭照' %><br />
+      <div class="control">
+        <%= f.file_field :avatar %>
+      </div>
+
+      <%# <%= image_tag current_user.avatar.variant(resize: '250x250') %>
+      <%= avatar(current_user) %>
+
+    </div>
+
     <div class="field">
       <%= f.label :intro, '個人簡介' %><br />
       <div class="control">
