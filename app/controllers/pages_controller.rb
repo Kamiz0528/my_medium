@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
 
   def index
-    @stories = Story.all.order(created_at: :desc).includes(:user)
+    # @stories = Story.published.with_attached_cover_image.order(created_at: :desc).includes(:user)
+    @stories = Story.published_stories
   end
 
   def show
