@@ -33,6 +33,7 @@ gem 'friendly_id', '~> 5.4'
 gem 'babosa', '~> 1.0', '>= 1.0.4'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'figaro', '~> 1.2'
+gem "braintree", "~> 2.100.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

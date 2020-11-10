@@ -15,3 +15,29 @@
     </div>
   </article>
 </div>
+
+<%# <div id="dropin-container"></div>
+<script type="text/javascript">
+
+<script src="https://js.braintreegateway.com/web/dropin/1.25.0/js/dropin.min.js"></script> %>
+
+<div id="dropin-container"></div>
+<button id="submit-button">Request payment method</button>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.20.4/js/dropin.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    var button = document.querySelector('#submit-button');
+
+    braintree.dropin.create({
+      authorization: '<%= @token %>',
+      container: '#dropin-container'
+    }, function (createErr, instance) {
+      button.addEventListener('click', function () {
+        instance.requestPaymentMethod(function (err, payload) {
+          // Submit payload.nonce to your server
+        });
+      });
+    });
+  })
+</script>
