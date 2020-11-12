@@ -16,7 +16,7 @@ class Story < ApplicationRecord
   has_many :bookmarks
 
   #scopes
-  scope :published_stories, -> { published.with_attached_cover_image.order(created_at: :desc).includes(:user) }
+  scope :published_stories, -> { published.with_attached_cover_image.includes(:user) }
 
   #instance methods
   def normalize_friendly_id(input)

@@ -1,7 +1,7 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar is-fixed-top is-warning" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <%= link_to root_path, class: 'navbar-item' do %>
-      <img src="assets/888LOGO.png">
+    <%= link_to root_path, class: 'navbar-item navbar-logo' do %>
+      <img src="/assets/888LOGO.min500.png" width="50" height="50">
     <% end %>
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -17,8 +17,8 @@
           <% if user_signed_in? %>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                <%= content_tag :i, "", class: 'fas fa-crown has-text-info mr-2' if current_user.vip_user? %>
-                <%= content_tag :i, "", class: 'fas fa-crown has-text-danger mr-2' if current_user.platinum_user? %>
+                <%= content_tag :i, "", class: 'fas fa-crown has-text-info mt-1 mr-2' if current_user.vip_user? %>
+                <%= content_tag :i, "", class: 'fas fa-crown has-text-danger mt-1 mr-2' if current_user.platinum_user? %>
                 <%= avatar(current_user, size: 50) %>
                 <%= current_user.username %>
               </a>

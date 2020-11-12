@@ -1,66 +1,70 @@
-<h1 class='title'>Hi，
-<%= current_user.username %>
-</h1>
-
+<% if user_signed_in? %>
+<div class="title-notice">
+  <h1 class='title'>Hi，
+  <%= current_user.username %>
+  </h1>
+</div>
+<% end %>
 <section class="columns">
   <!-- left -->
-  <section class="column">
-    <article>
-      <figure class="image">
-        <img src="https://fakeimg.pl/350x150/f0f0f0" alt="">
-      </figure>
-      <h2 class="title is-5">Creating a Pipeline to True Workplace Diversity</h2>
-      <p class="content">Providing resources, offering acceptance, and involving people of color are keys to making your company more diverse...</p>
-      <footer>
-        <p>Arielle Wiltz in Modus</p>
-        <p>Aug 7</p>
-      </footer>
-    </article>
-  </section>
-  <!-- left -->
-  <!-- middle -->
-  <section class="column">
-    <article class="media">
-      <figure class="media-left">
-        <img src="https://fakeimg.pl/100x100/">
-      </figure>
-      <div class="media-content">
-        <h2 class="title is-5">I Worked for an Amish Reality TV Show</h2>
-        <footer>
-          <p>Arielle Wiltz in Modus</p>
-          <p>Aug 7</p>
-        </footer>
+  <section class="column is-9 story-container">
+    <h2 class="title is-3 big-title has-text-centered">最新故事</h2>
+    <hr>
+    <div class="columns">
+      <div class="column is-7 big-story">
+        <% @new_story.each do |story| %>
+        <article class="media story-item">
+          <div class="media-content">
+            <h2 class="title is-2 has-text-centered"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
+            <p class="content"><%= strip_tags(story.content).truncate(200)+'...' %></p>
+            <footer>
+              <p>
+              <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark' %> | <%= time_ago_in_words(story.created_at) %>
+              </p>
+            </footer>
+          </div>
+    
+          <%if story.cover_image.attached? %>
+          <figure class="media-right">
+            <%= image_tag story.cover_image.variant(resize: '100x100') %>
+          </figure>
+          <% end %>
+    
+        </article>
+        <% end %>
       </div>
-    </article>
-    <article class="media">
-      <figure class="media-left">
-        <img src="https://fakeimg.pl/100x100/">
-      </figure>
-      <div class="media-content">
-        <h2 class="title is-5">I Worked for an Amish Reality TV Show</h2>
-        <footer>
-          <p>Arielle Wiltz in Modus</p>
-          <p>Aug 7</p>
-        </footer>
+    <!-- left -->
+    <!-- middle -->
+      <div class="column is-5">
+        <% @stories_new_list.each do |story| %>
+        <article class="media story-item">
+          <div class="media-content">
+            <h2 class="title is-3"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
+            <p class="content"><%= strip_tags(story.content).truncate(200)+'...' %></p>
+            <footer>
+              <p>
+              <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark' %> | <%= time_ago_in_words(story.created_at) %>
+              </p>
+            </footer>
+          </div>
+    
+          <%if story.cover_image.attached? %>
+          <figure class="media-right">
+            <%= image_tag story.cover_image.variant(resize: '100x100') %>
+          </figure>
+          <% end %>
+    
+        </article>
+        <% end %>
       </div>
-    </article>
-    <article class="media">
-      <figure class="media-left">
-        <img src="https://fakeimg.pl/100x100/">
-      </figure>
-      <div class="media-content">
-        <h2 class="title is-5">I Worked for an Amish Reality TV Show</h2>
-        <footer>
-          <p>Arielle Wiltz in Modus</p>
-          <p>Aug 7</p>
-        </footer>
-      </div>
-    </article>
+    </div>
   </section>
   <!-- middle -->
   <!-- right -->
-  <section class="column">
-    <article>
+  <section class="column story-container">
+    <h2 class="title is-3 big-title has-text-centered">公告</h2>
+    <hr>
+    <article class="story-item">
       <figure class="image">
         <img src="https://fakeimg.pl/350x200/f0f0f0" alt="">
       </figure>
@@ -77,14 +81,25 @@
 
 <hr>
 
-<section class="columns">
+<%# <section class="columns"> %>
   <!-- article list -->
-  <section class="column is-two-thirds">
+  <section class="column story-container">
+    <h2 class="title is-3 big-title has-text-centered">已追蹤</h2>
+    <hr>
+    <h3 class="has-text-centered">(敬請期待)</h3>
+    <%# <%= current_user.follow_ids %>
+  </section>
+  <!-- article list -->
 
-    <% @stories.each do |story| %>
-    <article class="media">
+  <section class="column story-container">
+    <hr>
+    <h2 class="title is-3 big-title has-text-centered">熱門文章</h2>
+    <hr>
+
+    <% @stories_hot_list.each do |story| %>
+    <article class="media story-item">
       <div class="media-content">
-        <h2 class="title is-4"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
+        <h2 class="title is-3"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
         <p class="content"><%= strip_tags(story.content).truncate(200) %></p>
         <footer>
           <p>
@@ -101,62 +116,5 @@
 
     </article>
     <% end %>
-
   </section>
-  <!-- article list -->
-
-  <section class="column">
-    <h2 class="title is-4">Popular on Medium</h2>
-    <hr>
-
-    <article class="media">
-      <div class="media-left">01</div>
-      <div class="media-content">
-        <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-        <footer>
-          <p>Thomas Oppong</p>
-        </footer>
-      </div>
-    </article>
-
-    <article class="media">
-      <div class="media-left">02</div>
-      <div class="media-content">
-        <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-        <footer>
-          <p>Thomas Oppong</p>
-        </footer>
-      </div>
-    </article>
-
-    <article class="media">
-      <div class="media-left">03</div>
-      <div class="media-content">
-        <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-        <footer>
-          <p>Thomas Oppong</p>
-        </footer>
-      </div>
-    </article>
-
-    <article class="media">
-      <div class="media-left">04</div>
-      <div class="media-content">
-        <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-        <footer>
-          <p>Thomas Oppong</p>
-        </footer>
-      </div>
-    </article>
-
-    <article class="media">
-      <div class="media-left">05</div>
-      <div class="media-content">
-        <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-        <footer>
-          <p>Thomas Oppong</p>
-        </footer>
-      </div>
-    </article>
-  </section>
-</section>
+<%# </section> %>
