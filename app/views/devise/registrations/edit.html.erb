@@ -1,6 +1,5 @@
-<h2 class='title'><%= resource_name.to_s.humanize %>個人資料</h2>
-
-<div class="container m-6">
+<div class="oringin-container">
+  <h2 class='title'><%= resource_name.to_s.humanize %>個人資料</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
   

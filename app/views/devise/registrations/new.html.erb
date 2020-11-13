@@ -1,6 +1,7 @@
-<h2 class='title'>註冊</h2>
 
-<div class="container m-6">
+
+<div class="oringin-container">
+  <h2 class='title'>註冊</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
   
@@ -23,7 +24,7 @@
       <%= f.label :password,'密碼' %>
       <div class="control">
         <% if @minimum_password_length %>
-        <em class='help'>(至少 <%= @minimum_password_length %>位數)</em>
+        <em class='help'>(至少 <%= @minimum_password_length %> 位數)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", class: 'input is-medium' %>
       </div>

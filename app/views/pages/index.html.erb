@@ -1,3 +1,4 @@
+<%# <% provide :my_title, "故事首頁" %>
 <% if user_signed_in? %>
 <div class="title-notice">
   <h1 class='title'>Hi，
@@ -6,77 +7,102 @@
 </div>
 <% end %>
 <section class="columns">
+
+  <!-- right -->
+  <section class="column is-2 ml-6 story-container">
+
+    <h2 class="title is-3 big-title has-text-centered">公告</h2>
+    <hr>
+
+    <article class="story-item">
+      <figure class="public-img">
+        <img src="https://fakeimg.pl/200x200/f0f0f0?text=NO IMAGE" alt="">
+      </figure>
+
+      <h2 class="title is-5">網站架設</h2>
+      <p class="content">測試中...</p>
+    </article>
+
+  </section>
+  <!-- right -->
   <!-- left -->
-  <section class="column is-9 story-container">
+  <section class="column is-9 story-container oringin-container">
     <h2 class="title is-3 big-title has-text-centered">最新故事</h2>
     <hr>
     <div class="columns">
-      <div class="column is-7 big-story">
-        <% @new_story.each do |story| %>
-        <article class="media story-item">
-          <div class="media-content">
-            <h2 class="title is-2 has-text-centered"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
-            <p class="content"><%= strip_tags(story.content).truncate(200)+'...' %></p>
-            <footer>
-              <p>
-              <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark' %> | <%= time_ago_in_words(story.created_at) %>
-              </p>
-            </footer>
+      <div class="column is-8">
+        <% @new_story_first.each do |story| %>
+        <article class="media story-item is-big">
+
+          <div class="story-item-top">
+            <% if story.user.avatar.attached? %>
+              <%= image_tag story.user.avatar.variant(resize: '50x50'), class: 'avatar' %>
+            <% else %>
+              <img src="https://fakeimg.pl/50x50/f0f0f0?text=NO IMAGE" class="avatar">
+            <% end %>
+            <div class="user-info">
+              <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark'%>
+              <%= time_ago_in_words(story.created_at) %>
+            </div>
           </div>
-    
-          <%if story.cover_image.attached? %>
-          <figure class="media-right">
-            <%= image_tag story.cover_image.variant(resize: '100x100') %>
-          </figure>
-          <% end %>
+
+          <div class="story-content">
+            <p class="content"><%= strip_tags(story.content).truncate(50)+' ...' %></p>
+            <% if story.cover_image.attached? %>
+            <figure class="media-right">
+              <%= image_tag story.cover_image.variant(resize: '300x300') %>
+            </figure>
+            <% else %>
+            <figure class="media-right">
+              <img src="https://fakeimg.pl/300x300/f0f0f0?text=NO IMAGE" alt="">
+            </figure>
+            <% end %>
+            <h2 class="title is-2"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
+          </div>
     
         </article>
         <% end %>
       </div>
     <!-- left -->
     <!-- middle -->
-      <div class="column is-5">
-        <% @stories_new_list.each do |story| %>
-        <article class="media story-item">
-          <div class="media-content">
-            <h2 class="title is-3"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
-            <p class="content"><%= strip_tags(story.content).truncate(200)+'...' %></p>
-            <footer>
-              <p>
-              <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark' %> | <%= time_ago_in_words(story.created_at) %>
-              </p>
-            </footer>
+      <div class="column">
+
+        <% @new_stories_sec_list.each do |story| %>
+        <article class="media story-item is-medium">
+
+          <div class="story-item-top">
+            <% if story.user.avatar.attached? %>
+              <%= image_tag story.user.avatar.variant(resize: '50x50'), class: 'avatar' %>
+            <% else %>
+              <img src="https://fakeimg.pl/50x50/f0f0f0?text=NO IMAGE" class="avatar">
+            <% end %>
+            <div class="user-info">
+              <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark'%>
+              <%= time_ago_in_words(story.created_at) %>
+            </div>
           </div>
-    
-          <%if story.cover_image.attached? %>
-          <figure class="media-right">
-            <%= image_tag story.cover_image.variant(resize: '100x100') %>
-          </figure>
-          <% end %>
-    
+
+          <div class="story-content">
+            <p class="content"><%= strip_tags(story.content).truncate(50)+' ...' %></p>
+            <% if story.cover_image.attached? %>
+            <figure class="media-right">
+              <%= image_tag story.cover_image.variant(resize: '150x150') %>
+            </figure>
+            <% else %>
+            <figure class="media-right">
+              <img src="https://fakeimg.pl/150x150/f0f0f0?text=NO IMAGE" alt="">
+            </figure>
+            <% end %>
+            <h2 class="title is-4"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
+          </div>
+          
         </article>
         <% end %>
+
       </div>
     </div>
   </section>
   <!-- middle -->
-  <!-- right -->
-  <section class="column story-container">
-    <h2 class="title is-3 big-title has-text-centered">公告</h2>
-    <hr>
-    <article class="story-item">
-      <figure class="image">
-        <img src="https://fakeimg.pl/350x200/f0f0f0" alt="">
-      </figure>
-      <h2 class="title is-5">Creating a Pipeline to True Workplace Diversity</h2>
-      <p class="content">Providing resources, offering acceptance, and involving people of color are keys to making your company more diverse...</p>
-      <footer>
-        <p>Arielle Wiltz in Modus</p>
-        <p>Aug 7</p>
-      </footer>
-    </article>
-  </section>
-  <!-- right -->
 </section>
 
 <hr>
@@ -92,25 +118,38 @@
   <!-- article list -->
 
   <section class="column story-container">
+
     <hr>
-    <h2 class="title is-3 big-title has-text-centered">熱門文章</h2>
+    <h2 class="title is-3 big-title has-text-centered">熱門故事</h2>
     <hr>
 
     <% @stories_hot_list.each do |story| %>
     <article class="media story-item">
-      <div class="media-content">
+
+      <div class="story-item-top">
+        <% if story.user.avatar.attached? %>
+          <%= image_tag story.user.avatar.variant(resize: '50x50'), class: 'avatar' %>
+        <% else %>
+          <img src="https://fakeimg.pl/50x50/f0f0f0?text=NO IMAGE" class="avatar">
+        <% end %>
+        <div class="user-info">
+          <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark'%>
+          <%= time_ago_in_words(story.created_at) %>
+        </div>
+      </div>
+
+      <div class="story-content">
         <h2 class="title is-3"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
-        <p class="content"><%= strip_tags(story.content).truncate(200) %></p>
-        <footer>
-          <p>
-          <%= link_to story.user.username, user_page_path(story.user.username), class: 'has-text-grey-dark' %> | <%= time_ago_in_words(story.created_at) %>
-          </p>
-        </footer>
+        <p class="content"><%= strip_tags(story.content).truncate(50) %></p>
       </div>
 
       <%if story.cover_image.attached? %>
       <figure class="media-right">
-        <%= image_tag story.cover_image.variant(resize: '150x150') %>
+        <%= image_tag story.cover_image.variant(resize: '200x200') %>
+      </figure>
+      <% else %>
+      <figure class="media-right">
+        <img src="https://fakeimg.pl/200x200/f0f0f0?text=NO IMAGE" alt="">
       </figure>
       <% end %>
 
