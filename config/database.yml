@@ -83,3 +83,4 @@ production:
   database: my_medium_production
   username: my_medium
   password: <%= ENV['MY_MEDIUM_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
