@@ -10,11 +10,11 @@
     "axios": "^0.21.0",
     "bulma": "^0.9.1",
     "stimulus": "^1.1.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "froala-editor": "^3.2.3"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "froala-editor": "^3.2.3",
     "webpack-dev-server": "^3.11.0"
   }
 }
