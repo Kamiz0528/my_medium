@@ -1,4 +1,4 @@
-import FrolaEditor from 'froala-editor'
+import FroalaEditor from 'froala-editor'
 import 'froala-editor/js/languages/zh_tw.js'
 import 'froala-editor/js/plugins/table.min.js'
 import 'froala-editor/js/plugins/colors.min.js'
@@ -11,10 +11,10 @@ import 'froala-editor/js/plugins/lists.min.js'
 import 'froala-editor/js/plugins/quote.min.js'
 import 'froala-editor/js/plugins/video.min.js'
 
-document.addEventListener('turbolinks:load', function(event) {
-  let editor = new FrolaEditor('#story_content', {
+document.addEventListener('turbolinks:load', function (event) {
+  let editor = new FroalaEditor('#story_content', {
     language: 'zh_tw',
-    spllcheck: false,
+    spellcheck: false,
     imageUploadURL: '/api/upload_image'
   })
 })
