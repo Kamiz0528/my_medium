@@ -16,7 +16,7 @@
 
     <article class="story-item">
       <figure class="public-img">
-        <img src="https://fakeimg.pl/200x200/f0f0f0?text=NO IMAGE" alt="">
+        <img src="https://fakeimg.pl/200x200/f0f0f0?text=NO DEMO" alt="">
       </figure>
 
       <h2 class="title is-5">網站架設</h2>
@@ -50,11 +50,11 @@
             <p class="content"><%= strip_tags(story.content).truncate(50)+' ...' %></p>
             <% if story.cover_image.attached? %>
             <figure class="media-right">
-              <%= image_tag story.cover_image.variant(resize: '300x300') %>
+              <%= image_tag story.cover_image.variant(resize: '500x500') %>
             </figure>
             <% else %>
             <figure class="media-right">
-              <img src="https://fakeimg.pl/300x300/f0f0f0?text=NO IMAGE" alt="">
+              <img src="https://fakeimg.pl/500x500/f0f0f0?text=NO IMAGE" alt="">
             </figure>
             <% end %>
             <h2 class="title is-2"><%= link_to story.title, story_page_path(story.user.username, story), class: 'has-text-grey-dark' %></h2>
