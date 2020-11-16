@@ -9,7 +9,7 @@ module UsersHelper
     elsif current_user.role == 'platinum_user'
       "白金會員"
     else
-      "不想說"
+      "普通會員"
     end
   end
 end

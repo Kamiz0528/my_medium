@@ -247,6 +247,7 @@ DEPENDENCIES
   foreman (~> 0.87.2)
   friendly_id (~> 5.4)
   hirb-unicode (~> 0.0.5)
+  i18n (~> 1.8, >= 1.8.5)
   image_processing (~> 1.12)
   jbuilder (~> 2.7)
   listen (~> 3.2)

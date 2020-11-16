@@ -1,15 +1,15 @@
 <%# <% provide :my_title, "故事首頁" %>
 <% if user_signed_in? %>
 <div class="title-notice">
-  <h1 class='title'>Hi，
+  <h1 class='title'>您好，
   <%= current_user.username %>
   </h1>
 </div>
 <% end %>
-<section class="columns">
+<section class="columns is-desktop">
 
   <!-- right -->
-  <section class="column is-2 ml-6 story-container">
+  <section class="column is-2-desktop is-full-mobile story-container">
 
     <h2 class="title is-3 big-title has-text-centered">公告</h2>
     <hr>
@@ -26,11 +26,11 @@
   </section>
   <!-- right -->
   <!-- left -->
-  <section class="column is-9 story-container oringin-container">
+  <section class="column is-9-desktop is-full-mobile story-container oringin-container">
     <h2 class="title is-3 big-title has-text-centered">最新故事</h2>
     <hr>
-    <div class="columns">
-      <div class="column is-8">
+    <div class="columns is-desktop">
+      <div class="column is-8-desktop is-full-mobile">
         <% @new_story_first.each do |story| %>
         <article class="media story-item is-big">
 
@@ -65,7 +65,7 @@
       </div>
     <!-- left -->
     <!-- middle -->
-      <div class="column">
+      <div class="column is-full-mobile">
 
         <% @new_stories_sec_list.each do |story| %>
         <article class="media story-item is-medium">
